@@ -1,9 +1,14 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'path';
 
 export default defineConfig({
-  // Se for publicar no GitHub Pages em um subdiretório, mude o 'base' para o nome do repositório, ex: '/meu-repositorio/'
-  base: '/', 
   build: {
-    outDir: 'dist',
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        privacidade: resolve(__dirname, 'privacidade.html'),
+        termos: resolve(__dirname, 'termos.html'),
+      },
+    },
   },
 });

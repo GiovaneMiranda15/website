@@ -1,3 +1,8 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Espaço para o header fixo + um respiro */
+}
+
 :root {
   --primary: #4f46e5;
   --primary-glow: rgba(79, 70, 229, 0.4);
@@ -338,13 +343,13 @@ nav {
 /* Grid Utilities */
 .grid-3 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 2rem;
 }
 
 .grid-2 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
   gap: 4rem;
   align-items: center;
 }
@@ -396,8 +401,17 @@ section {
 
 .carousel-preview {
   width: 100%;
+  max-width: 100%;
+  height: auto;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .solution-visual {
+    margin-bottom: 2rem;
+  }
 }
 
 .check-list {
@@ -444,26 +458,40 @@ section {
 
 .contact-methods {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 3rem;
+  flex-direction: row;
+  gap: 2rem;
+  margin-top: 2rem;
+  justify-content: flex-start;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  text-decoration: none;
-  color: var(--text-main);
-  background: rgba(255,255,255,0.05);
-  padding: 1rem;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 12px;
   transition: var(--transition);
+  text-decoration: none;
 }
 
 .contact-item:hover {
-  background: rgba(79, 70, 229, 0.1);
-  transform: translateX(10px);
+  background: var(--primary-glow);
+  transform: translateY(-5px);
+  border-color: var(--primary);
+}
+
+.contact-item .icon i {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .contact-methods {
+    justify-content: center;
+  }
 }
 
 /* Form Styling */
@@ -652,4 +680,24 @@ body {
 .contact-item .icon i {
     font-size: 1.5rem;
     vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem !important;
+    line-height: 1.2;
+  }
+  .section-title {
+    font-size: 1.75rem !important;
+    line-height: 1.3;
+  }
+  .hero-subtitle {
+    font-size: 1rem !important;
+  }
+  .section-subtitle {
+    font-size: 1rem !important;
+  }
+  h3 {
+    font-size: 1.25rem !important;
+  }
 }

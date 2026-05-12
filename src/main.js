@@ -190,14 +190,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const emailLink = document.querySelector('a[href^="mailto:"]');
 if (emailLink) {
     emailLink.addEventListener('click', (e) => {
-        // O mailto continua tentando abrir o app, mas também copiamos
         const email = "contato@gmtechlab.com.br";
         navigator.clipboard.writeText(email).then(() => {
-            const originalText = emailLink.querySelector('span:last-child').innerText;
-            emailLink.querySelector('span:last-child').innerText = "E-mail copiado!";
+            // Criar um pequeno balão de aviso
+            const toast = document.createElement('div');
+            toast.innerText = "Copiado!";
+            toast.style.position = 'absolute';
+            toast.style.background = 'var(--primary)';
+            toast.style.color = 'white';
+            toast.style.padding = '4px 8px';
+            toast.style.borderRadius = '4px';
+            toast.style.fontSize = '12px';
+            toast.style.bottom = '100%';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%) translateY(-10px)';
+            toast.style.zIndex = '100';
+            
+            emailLink.style.position = 'relative';
+            emailLink.appendChild(toast);
             
             setTimeout(() => {
-                emailLink.querySelector('span:last-child').innerText = originalText;
+                toast.remove();
             }, 2000);
         });
     });
