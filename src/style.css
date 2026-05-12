@@ -701,3 +701,34 @@ body {
     font-size: 1.25rem !important;
   }
 }
+
+/* Ajustes para Páginas Legais (Privacidade e Termos) */
+.legal-page-content {
+    padding-top: 120px !important; /* Espaço para o header */
+    padding-bottom: 80px;
+    max-width: 900px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.legal-card {
+    padding: 3rem;
+    margin: 2rem 0;
+    line-height: 1.8;
+}
+
+.legal-card h1, .legal-card h2 {
+    color: var(--primary);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .legal-card {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    .legal-page-content {
+        padding-top: 100px !important;
+    }
+}
