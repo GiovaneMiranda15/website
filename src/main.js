@@ -215,3 +215,71 @@ if (emailLink) {
         });
     });
 }
+
+// Carousel Functionality
+function initCarousel(carouselId) {
+    const carousel = document.getElementById(carouselId);
+    if (!carousel) return;
+
+    const items = carousel.querySelectorAll('.carousel-item');
+    const dots = carousel.querySelectorAll('.dot');
+    const prevBtn = carousel.querySelector('.prev');
+    const nextBtn = carousel.querySelector('.next');
+    let currentIndex = 0;
+    let interval;
+
+    function showSlide(index) {
+        items.forEach(item => item.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        items[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentIndex = index;
+    }
+
+    function nextSlide() {
+        let index = (currentIndex + 1) % items.length;
+        showSlide(index);
+    }
+
+    function prevSlide() {
+        let index = (currentIndex - 1 + items.length) % items.length;
+        showSlide(index);
+    }
+
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetInterval();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetInterval();
+    });
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+            resetInterval();
+        });
+    });
+
+    function startInterval() {
+        interval = setInterval(nextSlide, 5000);
+    }
+
+    function resetInterval() {
+        clearInterval(interval);
+        startInterval();
+    }
+
+    startInterval();
+}
+
+// Initialize all carousels
+document.addEventListener('DOMContentLoaded', () => {
+    initCarousel('vendas-carousel');
+});
+
+// Since main.js might already be running or loaded, we call it directly too
+initCarousel('vendas-carousel');
